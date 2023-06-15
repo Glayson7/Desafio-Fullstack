@@ -7,7 +7,16 @@ class ClienteViewSet(viewsets.ModelViewSet):
     queryset = Cliente.objects.all()
     serializer_class = ClienteSerializer
 
+    def get_queryset(self):
+        return Cliente.objects.all()
+
 
 class ContatoViewSet(viewsets.ModelViewSet):
-    queryset = Contato.objects.all()
     serializer_class = ContatoSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        cliente_pk = self.kwargs["cliente_pk"]
+        return Contato.objects.filter(
+            cliente__user=user, cliente_id=cliente_pk
+        )

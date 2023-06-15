@@ -1,0 +1,458 @@
+openapi: 3.0.3
+info:
+  title: 'Projeto FullStack '
+  version: 1.0.0
+  description: Projeto FullStack - backend
+paths:
+  /clientes/:
+    get:
+      operationId: clientes_list
+      tags:
+      - clientes
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cliente'
+          description: ''
+    post:
+      operationId: clientes_create
+      tags:
+      - clientes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+          description: ''
+  /clientes/{cliente_pk}/contatos/:
+    get:
+      operationId: clientes_contatos_list
+      parameters:
+      - in: path
+        name: cliente_pk
+        schema:
+          type: string
+        required: true
+      tags:
+      - clientes
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Contato'
+          description: ''
+    post:
+      operationId: clientes_contatos_create
+      parameters:
+      - in: path
+        name: cliente_pk
+        schema:
+          type: string
+        required: true
+      tags:
+      - clientes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contato'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Contato'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Contato'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contato'
+          description: ''
+  /clientes/{cliente_pk}/contatos/{id}/:
+    get:
+      operationId: clientes_contatos_retrieve
+      parameters:
+      - in: path
+        name: cliente_pk
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - clientes
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contato'
+          description: ''
+    put:
+      operationId: clientes_contatos_update
+      parameters:
+      - in: path
+        name: cliente_pk
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - clientes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contato'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Contato'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Contato'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contato'
+          description: ''
+    patch:
+      operationId: clientes_contatos_partial_update
+      parameters:
+      - in: path
+        name: cliente_pk
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - clientes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedContato'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedContato'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedContato'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contato'
+          description: ''
+    delete:
+      operationId: clientes_contatos_destroy
+      parameters:
+      - in: path
+        name: cliente_pk
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - clientes
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /clientes/{id}/:
+    get:
+      operationId: clientes_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this cliente.
+        required: true
+      tags:
+      - clientes
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+          description: ''
+    put:
+      operationId: clientes_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this cliente.
+        required: true
+      tags:
+      - clientes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+          description: ''
+    patch:
+      operationId: clientes_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this cliente.
+        required: true
+      tags:
+      - clientes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCliente'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCliente'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCliente'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+          description: ''
+    delete:
+      operationId: clientes_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this cliente.
+        required: true
+      tags:
+      - clientes
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    Cliente:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nome_completo:
+          type: string
+          maxLength: 200
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        telefone:
+          type: string
+          maxLength: 15
+        data_registro:
+          type: string
+          format: date
+          readOnly: true
+        contatos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contato'
+          readOnly: true
+      required:
+      - contatos
+      - data_registro
+      - email
+      - id
+      - nome_completo
+      - telefone
+    Contato:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nome_completo:
+          type: string
+          maxLength: 200
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        telefone:
+          type: string
+          maxLength: 15
+        data_registro:
+          type: string
+          format: date
+          readOnly: true
+        cliente:
+          type: integer
+      required:
+      - cliente
+      - data_registro
+      - email
+      - id
+      - nome_completo
+      - telefone
+    PatchedCliente:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nome_completo:
+          type: string
+          maxLength: 200
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        telefone:
+          type: string
+          maxLength: 15
+        data_registro:
+          type: string
+          format: date
+          readOnly: true
+        contatos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contato'
+          readOnly: true
+    PatchedContato:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nome_completo:
+          type: string
+          maxLength: 200
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        telefone:
+          type: string
+          maxLength: 15
+        data_registro:
+          type: string
+          format: date
+          readOnly: true
+        cliente:
+          type: integer
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
